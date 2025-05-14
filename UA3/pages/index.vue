@@ -3,7 +3,7 @@
   <div>
     <NavBar />
     <div class="container">
-      <h1>Welcome to the Blog</h1>
+      <h1>EPIC 1337 BLOGS</h1>
       
       <CategoryDropdown
         :blog-posts="blogs.data"
@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-const { data: blogs } = await useFetch('http://localhost:1337/api/blog-posts?populate=category&&populate=author');
+const { data: blogs } = await useFetch('http://localhost:1337/api/blog-posts?populate=category&populate=author');
 
 const selectedCategory = ref('');
 
@@ -30,7 +30,7 @@ const filteredBlogs = computed(() => {
   if (!selectedCategory.value) return blogs.value.data;
   
   return blogs.value.data.filter(blog => {
-    // Direct access to category name without .attributes or .data
+    
     const blogCategory = blog.category?.Category || 
                         blog.attributes?.category?.data?.attributes?.Category ||
                         blog.attributes?.category?.attributes?.Category;

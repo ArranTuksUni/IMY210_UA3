@@ -1,20 +1,20 @@
 <!-- u23655675 Arran Lamond -->
 <template>
   <div class="blog-card">
-    <!-- Blog Title (bold) -->
+    
     <h2 class="blog-title">{{ blog.title }}</h2>
     
-    <!-- Author Name -->
+    
     <p class="blog-author">
       By {{ getAuthorName() }}
     </p>
     
-    <!-- Content Preview (50 characters) -->
+    
     <p class="blog-preview">{{ contentPreview }}</p>
     
-    <!-- Read More Button -->
+
     <NuxtLink 
-      :to="`/blog-post/${blog.slug}`"
+      :to="`/posts/${blog.slug}`" 
       class="read-more-button"
     >
       Read More
@@ -30,7 +30,7 @@ const props = defineProps({
   }
 });
 
-// Get 50 character preview of content
+
 const contentPreview = computed(() => {
   const content = props.blog.content || '';
   return content.length > 75 
@@ -38,7 +38,7 @@ const contentPreview = computed(() => {
     : content;
 });
 
-// Helper function to get author's full name
+
 const getAuthorName = () => {
   const author = props.blog?.author;
 
@@ -59,6 +59,11 @@ const getAuthorName = () => {
   margin-bottom: 1.5rem;
   background-color: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-2px);
 }
 
 .blog-title {
@@ -82,16 +87,26 @@ const getAuthorName = () => {
 
 .read-more-button {
   display: inline-block;
-  background-color: #4299e1;
-  color: white;
+  background-color: #90EE90; /* Light green */
+  color: #2c3e50; /* Dark text for contrast */
   padding: 0.5rem 1rem;
   border-radius: 4px;
   text-decoration: none;
   font-size: 0.875rem;
-  transition: background-color 0.2s;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .read-more-button:hover {
-  background-color: #3182ce;
+  background-color: #76D7C4; /* Slightly darker green */
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.read-more-button:active {
+  transform: translateY(0);
 }
 </style>

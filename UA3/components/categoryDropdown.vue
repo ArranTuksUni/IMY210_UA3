@@ -36,7 +36,7 @@ const emitFilter = () => {
   emit('filter', selectedCategory.value);
 };
 
-// Extract unique category names from blog posts
+
 const uniqueCategories = computed(() => {
   const categories = new Set();
   
